@@ -152,7 +152,7 @@
                         <i class="fas fa-triangle-exclamation"></i>
                     </div>
                     <h3 class="text-xl font-serif mb-3">Crisis Handling</h3>
-                    <p class="text-gray-5005 text-sm leading-relaxed">Thriving under pressure. Immediate, structural problem-solving and rapid multi-team coordination during live constraints.</p>
+                    <p class="text-gray-500 text-sm leading-relaxed">Thriving under pressure. Immediate, structural problem-solving and rapid multi-team coordination during live constraints.</p>
                 </div>
 
                 <div class="reveal glass-card p-10 rounded-[2rem] hover-lift" style="transition-delay: 0.4s">
@@ -205,10 +205,14 @@
             
             <div class="grid md:grid-cols-2 gap-16">
                 <div class="reveal space-y-6">
-                    <div class="video-wrapper shadow-2xl border-[8px] border-white">
-                        <video controls preload="metadata" poster="contents/photo_2025-09-01_19-08-52.jpg">
-                            <source src="contents/ruhama.mp4" type="video/mp4">
-                        </video>
+                    <div id="safelight-container" class="video-wrapper shadow-2xl border-[8px] border-white group cursor-pointer relative" onclick="loadSafelightVideo()">
+                        <img id="safelight-thumb" src="contents/photo_2025-09-01_19-08-52.jpg" alt="Safe Light Initiative" class="absolute inset-0 w-full h-full object-cover z-20 transition-all duration-500 group-hover:scale-105">
+                        
+                        <div id="safelight-overlay" class="absolute inset-0 bg-luxury-darkRose/20 z-30 flex items-center justify-center transition-colors duration-300 group-hover:bg-luxury-darkRose/40">
+                            <div class="w-16 h-16 rounded-full glass-card flex items-center justify-center text-luxury-darkRose text-xl shadow-xl transition-transform duration-300 group-hover:scale-110">
+                                <i class="fas fa-play ml-1"></i>
+                            </div>
+                        </div>
                     </div>
                     <div class="px-2 border-l-2 border-luxury-rose/30 ml-2">
                         <h4 class="font-serif text-xl text-luxury-darkRose">Safe Light Initiative Portfolio</h4>
@@ -267,6 +271,18 @@
     </footer>
 
     <script>
+        // Interactive Player Injection
+        function loadSafelightVideo() {
+            const container = document.getElementById('safelight-container');
+            
+            // Generate clean streaming layout inside wrapper
+            container.innerHTML = `<iframe src="https://drive.google.com/file/d/1EsI_8mxznkhuxP-UETAtWKkStDN5T2-u/preview" frameborder="0" allowfullscreen class="z-10"></iframe>`;
+            
+            // Remove clickable properties once video layer replaces container
+            container.removeAttribute('onclick');
+            container.classList.remove('cursor-pointer');
+        }
+
         // Smooth Reveal Animation
         function reveal() {
             var reveals = document.querySelectorAll(".reveal");
@@ -283,3 +299,5 @@
         // Initial call
         reveal();
     </script>
+</body>
+</html>
